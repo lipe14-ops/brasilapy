@@ -32,7 +32,6 @@ class BrasilApiClient(object):
     
     def __call__(self) -> None:
         for route in self.route:
-            print(route)
             setattr(self, route.name, route.request)
     
     def __getattr__(self, name: str) -> Callable:

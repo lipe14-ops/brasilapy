@@ -2,3 +2,4 @@
 build
 dist
 brasilapy.egg-info
+setup.py

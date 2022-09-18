@@ -3,6 +3,8 @@
 # BrasilApy
 Um cliente da [Brasil  API](https://brasilapi.com.br/) em python3. E aqui vai o [repositório](https://github.com/BrasilAPI/BrasilAPI) oficial.
 
+## Instalação:
+rode o comando `pip install brasilapy` e estará tudo pronto.
 ## Documentação:
 Documentação oficial da [API](https://brasilapi.com.br/docs).
 
