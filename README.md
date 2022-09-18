@@ -1,7 +1,7 @@
 ![](./images/brasilapi-logo-small.png) <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="70" height="70" /> 
 
 # BrasilApy
-Um cliente da [Brasil  API](https://brasilapi.com.br/) em python3. E aqui vai o [repositório](https://github.com/BrasilAPI/BrasilAPI) oficial.
+Um cliente da [Brasil  API](https://brasilapi.com.br/) em python3. Link do [repositório](https://github.com/BrasilAPI/BrasilAPI) oficial.
 
 ## Instalação:
 rode o comando `pip install brasilapy` e estará tudo pronto.
@@ -55,4 +55,4 @@ print(response.content) #imprime o response da API.
 
 
 [![](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](fn697169@gmail.com)
-[![](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/filipe_1408/)
+[![](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/filipe_kkkj/)
