@@ -12,7 +12,7 @@ class ClientProcessor(ABC):
     def get_data(
         self, endpoint: str, queryset_params: dict[str, str] | None = None
     ) -> dict:
-        raise NotImplementedError("Please define a _get_data method")
+        raise NotImplementedError("A get_data method must be created")
 
 
 class RequestsProcessor(ClientProcessor):

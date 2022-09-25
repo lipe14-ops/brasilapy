@@ -4,12 +4,12 @@ from brasilapy import BrasilAPI
 
 
 @pytest.fixture
-def api_client():
+def brasil_api():
     return BrasilAPI()
 
 
 @pytest.fixture
-def request_banks_dict():
+def request_banks_list_json():
     return [
         {
             "ispb": "00000000",
