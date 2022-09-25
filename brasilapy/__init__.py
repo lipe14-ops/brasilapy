@@ -1,1 +1,1 @@
-from client import BrasilAPI  # noqa: F401
+from .client import BrasilAPI  # noqa: F401

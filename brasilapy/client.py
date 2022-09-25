@@ -14,5 +14,5 @@ class BrasilAPI:
         return [Bank.parse_obj(bank_item) for bank_item in banks_response]
 
     def get_bank(self, code: int) -> Bank:
-        bank_response: dict = self.processor.get_data(f"/bank/v1/{str(code)}")
+        bank_response: dict = self.processor.get_data(f"/banks/v1/{str(code)}")
         return Bank.parse_obj(bank_response)
