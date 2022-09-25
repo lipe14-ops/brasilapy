@@ -1,4 +1,4 @@
-![](./images/brasilapi-logo-small.png) <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="70" height="70" /> 
+![](./images/brasilapi-logo-small.png) <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="70" height="70" />
 
 # BrasilApy
 Um cliente da [Brasil  API](https://brasilapi.com.br/) em python3. Link do [repositório](https://github.com/BrasilAPI/BrasilAPI) oficial.
@@ -12,7 +12,7 @@ Documentação oficial da [API](https://brasilapi.com.br/docs).
 ```py
 from brasilapy import BrasilApiClient
 
-#acesse os endpoints pela variável client. 
+#acesse os endpoints pela variável client.
 client = BrasilApiClient()
 response = client.get_estado('GO', {})
 
@@ -22,7 +22,7 @@ print(response.content) #imprime o response da API.
 ### atributos do `BrasilApiClient`
 
 | metodos do cliente    |  endpoint da API |
-|:------------:|:------------------:| 
+|:------------:|:------------------:|
 |   get_banks | /banks/v1/ |
 | get_bank | /banks/v1/{code}
 | get_cep_v1| /cep/v1/{cep}
