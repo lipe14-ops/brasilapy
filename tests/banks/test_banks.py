@@ -34,7 +34,7 @@ class TestBanks:
             assert bank.dict() == request_banks_list_json[0]
             assert type(bank) is Bank
 
-            assert bank.code == request_banks_list_json[0].get('code')
-            assert bank.ispb == request_banks_list_json[0].get('ispb')
-            assert bank.name == request_banks_list_json[0].get('name')
-            assert bank.fullName == request_banks_list_json[0].get('fullName')
+            assert bank.code == request_banks_list_json[0].get("code")
+            assert bank.ispb == request_banks_list_json[0].get("ispb")
+            assert bank.name == request_banks_list_json[0].get("name")
+            assert bank.fullName == request_banks_list_json[0].get("fullName")
