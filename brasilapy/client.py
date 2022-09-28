@@ -1,5 +1,6 @@
 from brasilapy.constants import APIVersion
-from brasilapy.models import CEP, Bank, CEPv2
+from brasilapy.models.cnpj import CNPJ
+from brasilapy.models.general import CEP, Bank, CEPv2
 from brasilapy.processor import RequestsProcessor
 
 
@@ -20,6 +21,10 @@ class BrasilAPI:
         return Bank.parse_obj(bank_response)
 
     def get_cep(self, cep: str, api_version: APIVersion = APIVersion.V1) -> CEP | CEPv2:
+
+        if len(cep) != 8:
+            raise TypeError("Please provide a valid CEP number")
+
         if api_version not in [APIVersion.V1, APIVersion.V2]:
             raise TypeError("A valid API version must be provided for this call")
 
@@ -31,3 +36,10 @@ class BrasilAPI:
         cep_details: dict = self.processor.get_data(f"/cep/{api_version}/{cep}")
 
         return model_class.parse_obj(cep_details)
+
+    def get_cnpj(self, cnpj: str) -> CNPJ:
+        if len(cnpj) != 14:
+            raise TypeError("Please provide a valid CNPJ number")
+
+        cnpj_details: dict = self.processor.get_data(f"/cnpj/v1/{cnpj}")
+        return CNPJ.parse_obj(cnpj_details)

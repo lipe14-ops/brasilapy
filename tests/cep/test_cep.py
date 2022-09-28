@@ -4,10 +4,16 @@ import pytest
 
 from brasilapy import BrasilAPI
 from brasilapy.constants import APIVersion
-from brasilapy.models import CEP, CEPv2
+from brasilapy.models.general import CEP, CEPv2
 
 
 class TestCEP:
+    def test_get_cep_invalid_input(self, brasil_api: BrasilAPI):
+        with pytest.raises(TypeError) as exc:
+            assert brasil_api.get_cep(cep="123456789000") is CEP
+
+        assert "Please provide a valid CEP number" in str(exc)
+
     def test_get_cep_with_defaults(self, brasil_api: BrasilAPI, cep_json):
 
         with mock.patch(

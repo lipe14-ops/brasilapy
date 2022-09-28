@@ -1,7 +1,7 @@
 from unittest import mock
 
 from brasilapy import BrasilAPI
-from brasilapy.models import Bank
+from brasilapy.models.general import Bank
 
 
 class TestBanks:
