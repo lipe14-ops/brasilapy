@@ -36,3 +36,8 @@ class CEPLocation(BaseReturnModel):
 
 class CEPv2(CEP):
     location: CEPLocation
+
+
+class DDD(BaseReturnModel):
+    state: str
+    cities: list[str]

@@ -8,14 +8,17 @@ from brasilapy.models.cnpj import CNPJ
 
 class TestCNPJ:
     def test_get_cnpj_with_invalid_input(self, brasil_api: BrasilAPI):
+
+        error_message = "Please provide a valid CNPJ number"
+
         with pytest.raises(TypeError) as exc1:
             brasil_api.get_cnpj(cnpj="1111155555999988")
 
         with pytest.raises(TypeError) as exc2:
             brasil_api.get_cnpj(cnpj="11111555559")
 
-        assert "Please provide a valid CNPJ number" in str(exc1)
-        assert "Please provide a valid CNPJ number" in str(exc2)
+        assert error_message in str(exc1)
+        assert error_message in str(exc2)
 
     def test_get_cnpj_with_defaults(self, brasil_api: BrasilAPI, cnpj_json):
 

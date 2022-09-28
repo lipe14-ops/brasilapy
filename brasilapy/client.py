@@ -1,6 +1,6 @@
 from brasilapy.constants import APIVersion
 from brasilapy.models.cnpj import CNPJ
-from brasilapy.models.general import CEP, Bank, CEPv2
+from brasilapy.models.general import CEP, DDD, Bank, CEPv2
 from brasilapy.processor import RequestsProcessor
 
 
@@ -43,3 +43,10 @@ class BrasilAPI:
 
         cnpj_details: dict = self.processor.get_data(f"/cnpj/v1/{cnpj}")
         return CNPJ.parse_obj(cnpj_details)
+
+    def get_ddd(self, ddd: str):
+        if len(ddd) != 2:
+            raise TypeError("Please provide a DDD number (2 digits)")
+
+        ddd_details: dict = self.processor.get_data(f"/ddd/v1/{ddd}")
+        return DDD.parse_obj(ddd_details)
