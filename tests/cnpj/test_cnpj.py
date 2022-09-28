@@ -1,3 +1,4 @@
+from datetime import datetime
 from unittest import mock
 
 import pytest
@@ -30,6 +31,22 @@ class TestCNPJ:
             cnpj_detail = brasil_api.get_cnpj(cnpj="11111000002222")
 
             get_data_mock.assert_called_once()
+
+            cnpj_json["qsa"][0]["data_entrada_sociedade"] = datetime.strptime(
+                cnpj_json["qsa"][0]["data_entrada_sociedade"], "%Y-%m-%d"
+            ).date()
+
+            for key in [
+                "data_opcao_pelo_mei",
+                "data_exclusao_do_mei",
+                "data_inicio_atividade",
+                "data_opcao_pelo_simples",
+                "data_situacao_cadastral",
+            ]:
+                if cnpj_json[key] is not None:
+                    cnpj_json[key] = datetime.strptime(
+                        cnpj_json[key], "%Y-%m-%d"
+                    ).date()
 
             assert cnpj_detail.dict() == cnpj_json
             assert type(cnpj_detail) is CNPJ

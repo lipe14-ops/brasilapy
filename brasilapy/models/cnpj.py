@@ -1,3 +1,5 @@
+from datetime import date
+
 from .general import BaseReturnModel
 
 
@@ -14,7 +16,7 @@ class SocioAdmin(BaseReturnModel):
     cnpj_cpf_do_socio: str  # with a filter
     qualificacao_socio: str
     codigo_faixa_etaria: int
-    data_entrada_sociedade: str  # @todo handle date
+    data_entrada_sociedade: date
     identificador_de_socio: int
     cpf_representante_legal: str
     nome_representante_legal: str
@@ -53,17 +55,17 @@ class CNPJ(BaseReturnModel):
     situacao_especial: str
     opcao_pelo_simples: bool
     situacao_cadastral: int
-    data_opcao_pelo_mei: str | None  # @todo treat date
-    data_exclusao_do_mei: str | None  # @todo treat date
+    data_opcao_pelo_mei: date | None
+    data_exclusao_do_mei: date | None
     cnae_fiscal_descricao: str
     codigo_municipio_ibge: int
-    data_inicio_atividade: str | None  # @todo treat date
+    data_inicio_atividade: date | None
     data_situacao_especial: str | None
-    data_opcao_pelo_simples: str | None  # @todo treat date
-    data_situacao_cadastral: str | None  # @todo treat date
+    data_opcao_pelo_simples: date | None
+    data_situacao_cadastral: date | None
     nome_cidade_no_exterior: str
     codigo_natureza_juridica: int
-    data_exclusao_do_simples: str | None  # todo treat date
+    data_exclusao_do_simples: date | None
     motivo_situacao_cadastral: int
     ente_federativo_responsavel: str
     identificador_matriz_filial: int
