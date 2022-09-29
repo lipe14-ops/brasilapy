@@ -1,3 +1,5 @@
+from datetime import date
+
 from pydantic import BaseModel
 
 
@@ -41,3 +43,9 @@ class CEPv2(CEP):
 class DDD(BaseReturnModel):
     state: str
     cities: list[str]
+
+
+class FeriadoNacional(BaseReturnModel):
+    date: date
+    name: str
+    type: str

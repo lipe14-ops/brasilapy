@@ -1,6 +1,6 @@
 from brasilapy.constants import APIVersion
 from brasilapy.models.cnpj import CNPJ
-from brasilapy.models.general import CEP, DDD, Bank, CEPv2
+from brasilapy.models.general import CEP, DDD, Bank, CEPv2, FeriadoNacional
 from brasilapy.processor import RequestsProcessor
 
 
@@ -12,7 +12,7 @@ class BrasilAPI:
         self.processor = processor_handler()
 
     def get_banks(self) -> list[Bank]:
-        banks: dict = self.processor.get_data("/banks/v1")
+        banks = self.processor.get_data("/banks/v1")
         return [Bank.parse_obj(bank) for bank in banks]
 
     def get_bank(self, code: int) -> Bank:
@@ -50,3 +50,7 @@ class BrasilAPI:
 
         ddd_details: dict = self.processor.get_data(f"/ddd/v1/{ddd}")
         return DDD.parse_obj(ddd_details)
+
+    def get_feriados(self, year: int) -> list[FeriadoNacional]:
+        feriados = self.processor.get_data(f"/feriados/v1/{year}")
+        return [FeriadoNacional.parse_obj(feriado) for feriado in feriados]
