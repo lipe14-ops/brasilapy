@@ -150,6 +150,6 @@ class BrasilAPI:
         taxas = self.processor.get_data("/taxas/v1/")
         return [TaxaJuros.parse_obj(taxa) for taxa in taxas]
 
-    def get_taxa_juros(self, taxa_nome: TaxaJurosType) -> TaxaJuros:
-        taxa = self.processor.get_data(f"/taxas/v1/{taxa_nome}")
+    def get_taxa_juros(self, taxa: TaxaJurosType) -> TaxaJuros:
+        taxa = self.processor.get_data(f"/taxas/v1/{taxa}")
         return TaxaJuros.parse_obj(taxa)

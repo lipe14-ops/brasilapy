@@ -25,7 +25,7 @@ class TestTaxas:
             return_value=taxas_json[0],
         ):
 
-            taxa = brasil_api.get_taxa_juros(taxa_nome=TaxaJurosType.SELIC)
+            taxa = brasil_api.get_taxa_juros(taxa=TaxaJurosType.SELIC)
 
             assert type(taxa) is TaxaJuros
             assert taxa.dict() == taxas_json[0]
