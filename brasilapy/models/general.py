@@ -102,3 +102,8 @@ class RegistroBrDominio(BaseReturnModel):
     publication_status: str
     expires_at: datetime
     suggestions: list[str]
+
+
+class TaxaJuros(BaseReturnModel):
+    nome: str
+    valor: float

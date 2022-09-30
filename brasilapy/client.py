@@ -1,4 +1,4 @@
-from brasilapy.constants import APIVersion, FipeTipoVeiculo, IBGEProvider
+from brasilapy.constants import APIVersion, FipeTipoVeiculo, IBGEProvider, TaxaJurosType
 from brasilapy.models.cnpj import CNPJ
 from brasilapy.models.general import (
     CEP,
@@ -12,6 +12,7 @@ from brasilapy.models.general import (
     IbgeEstado,
     IbgeMunicipio,
     RegistroBrDominio,
+    TaxaJuros,
 )
 from brasilapy.processor import RequestsProcessor
 
@@ -144,3 +145,11 @@ class BrasilAPI:
         del registro_br_dominio["expires-at"]
 
         return RegistroBrDominio.parse_obj(registro_br_dominio)
+
+    def get_taxas_juros(self) -> list[TaxaJuros]:
+        taxas = self.processor.get_data("/taxas/v1/")
+        return [TaxaJuros.parse_obj(taxa) for taxa in taxas]
+
+    def get_taxa_juros(self, taxa_nome: TaxaJurosType) -> TaxaJuros:
+        taxa = self.processor.get_data(f"/taxas/v1/{taxa_nome}")
+        return TaxaJuros.parse_obj(taxa)

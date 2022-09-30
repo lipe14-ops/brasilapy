@@ -13,3 +13,9 @@ class IBGEProvider:
     DADOS_ABERTOS_BR = "dados-abertos-br"
     GOV = "gov"
     WIKIPEDIA = "wikipedia"
+
+
+class TaxaJurosType:
+    SELIC = "selic"
+    CDI = "cdi"
+    IPCA = "ipca"
