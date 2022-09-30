@@ -9,7 +9,8 @@ from brasilapy.models.general import (
     FipePreco,
     FipeTabelaItem,
     FipeVeiculo,
-    IBGEItem,
+    IbgeEstado,
+    IbgeMunicipio,
 )
 from brasilapy.processor import RequestsProcessor
 
@@ -97,12 +98,12 @@ class BrasilAPI:
     def get_ibge_municipios(
         self,
         state_uf: str,
-        providers: list[IBGEProvider] = (
+        providers: tuple[IBGEProvider] = (
             IBGEProvider.DADOS_ABERTOS_BR,
             IBGEProvider.GOV,
             IBGEProvider.WIKIPEDIA,
         ),
-    ) -> list[IBGEItem]:
+    ) -> list[IbgeMunicipio]:
 
         if not providers:
             raise TypeError("A list of providers must be defined")
@@ -114,4 +115,15 @@ class BrasilAPI:
             f"/ibge/municipios/v1/{state_uf}", params={"providers": ",".join(providers)}
         )
 
-        return [IBGEItem.parse_obj(municipio) for municipio in municipios]
+        return [IbgeMunicipio.parse_obj(municipio) for municipio in municipios]
+
+    def get_ibge_estados(self) -> list[IbgeEstado]:
+        estados = self.processor.get_data("/ibge/uf/v1")
+        return [IbgeEstado.parse_obj(estado) for estado in estados]
+
+    def get_ibge_estado(self, state_uf: str) -> IbgeEstado:
+        if not state_uf:
+            raise TypeError("A UF must be defined")
+
+        estado = self.processor.get_data(f"/ibge/uf/v1/{state_uf}")
+        return IbgeEstado.parse_obj(estado)

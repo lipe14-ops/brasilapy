@@ -10,3 +10,33 @@ def ibge_municipios_json():
         {"nome": "ALAGOA NOVA", "codigo_ibge": "2500403"},
         {"nome": "ALAGOINHA", "codigo_ibge": "2500502"},
     ]
+
+
+@pytest.fixture
+def ibge_estados_json():
+    return [
+        {
+            "id": 11,
+            "sigla": "RO",
+            "nome": "Rondônia",
+            "regiao": {"id": 1, "sigla": "N", "nome": "Norte"},
+        },
+        {
+            "id": 12,
+            "sigla": "AC",
+            "nome": "Acre",
+            "regiao": {"id": 1, "sigla": "N", "nome": "Norte"},
+        },
+        {
+            "id": 13,
+            "sigla": "AM",
+            "nome": "Amazonas",
+            "regiao": {"id": 1, "sigla": "N", "nome": "Norte"},
+        },
+        {
+            "id": 14,
+            "sigla": "RR",
+            "nome": "Roraima",
+            "regiao": {"id": 1, "sigla": "N", "nome": "Norte"},
+        },
+    ]

@@ -74,6 +74,19 @@ class FipeTabelaItem(BaseReturnModel):
     mes: str
 
 
-class IBGEItem(BaseReturnModel):
+class IbgeMunicipio(BaseReturnModel):
     nome: str
     codigo_ibge: str
+
+
+class IbgeEstadoRegiao(BaseReturnModel):
+    id: int
+    sigla: str
+    nome: str
+
+
+class IbgeEstado(BaseReturnModel):
+    id: int
+    sigla: str
+    nome: str
+    regiao: IbgeEstadoRegiao
