@@ -1,6 +1,16 @@
-from brasilapy.constants import APIVersion
+from brasilapy.constants import APIVersion, FipeTipoVeiculo, IBGEProvider
 from brasilapy.models.cnpj import CNPJ
-from brasilapy.models.general import CEP, DDD, Bank, CEPv2, FeriadoNacional
+from brasilapy.models.general import (
+    CEP,
+    DDD,
+    Bank,
+    CEPv2,
+    FeriadoNacional,
+    FipePreco,
+    FipeTabelaItem,
+    FipeVeiculo,
+    IBGEItem,
+)
 from brasilapy.processor import RequestsProcessor
 
 
@@ -54,3 +64,54 @@ class BrasilAPI:
     def get_feriados(self, year: int) -> list[FeriadoNacional]:
         feriados = self.processor.get_data(f"/feriados/v1/{year}")
         return [FeriadoNacional.parse_obj(feriado) for feriado in feriados]
+
+    def get_fipe_veiculos(
+        self,
+        tipo_veiculo: FipeTipoVeiculo = FipeTipoVeiculo.CARROS,
+        tabela_referencia: int | None = None,
+    ) -> list[FipeVeiculo]:
+        carros = self.processor.get_data(
+            f"/fipe/marcas/v1/{tipo_veiculo}",
+            params={"tabela_referencia": tabela_referencia}
+            if tabela_referencia
+            else None,
+        )
+
+        return [FipeVeiculo.parse_obj(carro) for carro in carros]
+
+    def get_fipe_precos(
+        self, codigo_fipe: str, tabela_referencia: int | None = None
+    ) -> list[FipePreco]:
+        precos = self.processor.get_data(
+            f"/fipe/preco/v1/{codigo_fipe}",
+            params={"tabela_referencia": tabela_referencia}
+            if tabela_referencia
+            else None,
+        )
+        return [FipePreco.parse_obj(preco) for preco in precos]
+
+    def get_fipe_tabelas(self) -> list[FipeTabelaItem]:
+        items = self.processor.get_data("/fipe/tabelas/v1/")
+        return [FipeTabelaItem.parse_obj(item) for item in items]
+
+    def get_ibge_municipios(
+        self,
+        state_uf: str,
+        providers: list[IBGEProvider] = (
+            IBGEProvider.DADOS_ABERTOS_BR,
+            IBGEProvider.GOV,
+            IBGEProvider.WIKIPEDIA,
+        ),
+    ) -> list[IBGEItem]:
+
+        if not providers:
+            raise TypeError("A list of providers must be defined")
+
+        if not state_uf:
+            raise TypeError("A state must be defined")
+
+        municipios = self.processor.get_data(
+            f"/ibge/municipios/v1/{state_uf}", params={"providers": ",".join(providers)}
+        )
+
+        return [IBGEItem.parse_obj(municipio) for municipio in municipios]

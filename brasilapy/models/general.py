@@ -49,3 +49,31 @@ class FeriadoNacional(BaseReturnModel):
     date: date
     name: str
     type: str
+
+
+class FipeVeiculo(BaseReturnModel):
+    nome: str
+    valor: int
+
+
+class FipePreco(BaseReturnModel):
+    valor: str
+    marca: str
+    modelo: str
+    anoModelo: int
+    combustivel: str
+    codigoFipe: str
+    mesReferencia: str
+    tipoVeiculo: int
+    siglaCombustivel: str
+    dataConsulta: str
+
+
+class FipeTabelaItem(BaseReturnModel):
+    codigo: int
+    mes: str
+
+
+class IBGEItem(BaseReturnModel):
+    nome: str
+    codigo_ibge: str
