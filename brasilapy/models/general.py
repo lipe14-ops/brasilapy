@@ -1,4 +1,4 @@
-from datetime import date
+from datetime import date, datetime
 
 from pydantic import BaseModel
 
@@ -90,3 +90,15 @@ class IbgeEstado(BaseReturnModel):
     sigla: str
     nome: str
     regiao: IbgeEstadoRegiao
+
+
+class RegistroBrDominio(BaseReturnModel):
+    status_code: int
+    status: str
+    fqdn: str
+    fqdnace: str
+    exempt: bool
+    hosts: list[str]
+    publication_status: str
+    expires_at: datetime
+    suggestions: list[str]

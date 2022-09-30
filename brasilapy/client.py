@@ -11,6 +11,7 @@ from brasilapy.models.general import (
     FipeVeiculo,
     IbgeEstado,
     IbgeMunicipio,
+    RegistroBrDominio,
 )
 from brasilapy.processor import RequestsProcessor
 
@@ -127,3 +128,19 @@ class BrasilAPI:
 
         estado = self.processor.get_data(f"/ibge/uf/v1/{state_uf}")
         return IbgeEstado.parse_obj(estado)
+
+    def get_registro_br_domain(self, fqdn: str) -> RegistroBrDominio:
+        if not fqdn.endswith(".br"):
+            raise ValueError("The domain must end with '.br'")
+
+        registro_br_dominio = self.processor.get_data(f"/registrobr/v1/{fqdn}")
+
+        registro_br_dominio["publication_status"] = registro_br_dominio[
+            "publication-status"
+        ]
+        registro_br_dominio["expires_at"] = registro_br_dominio["expires-at"]
+
+        del registro_br_dominio["publication-status"]
+        del registro_br_dominio["expires-at"]
+
+        return RegistroBrDominio.parse_obj(registro_br_dominio)
