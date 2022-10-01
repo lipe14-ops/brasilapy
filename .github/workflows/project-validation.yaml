@@ -1,5 +1,5 @@
-name: Project Validation and Lint
-run-name: ${{ github.actor }} is running pre-commit, validating the project.
+name: Project Validation
+run-name: ${{ github.actor }} triggered validation
 on: [push]
 jobs:
   RunPrecommit:
