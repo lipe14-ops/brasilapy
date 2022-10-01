@@ -13,4 +13,4 @@ jobs:
         run: pre-commit validate-config
       - name: Run Pre-commit
         run: pre-commit run --all-files
-      - run: All done!
+      - run: echo "All done! 🏁"
