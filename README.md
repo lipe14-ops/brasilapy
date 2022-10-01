@@ -1,58 +1,82 @@
-![](./images/brasilapi-logo-small.png) <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="70" height="70" /> 
+![](./images/brasilapi-logo-small.png) <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="70" height="70" />
 
 # BrasilApy
 Um cliente da [Brasil  API](https://brasilapi.com.br/) em python3. Link do [repositório](https://github.com/BrasilAPI/BrasilAPI) oficial.
 
-## Instalação:
-rode o comando `pip install brasilapy` e estará tudo pronto.
-## Documentação:
-Documentação oficial da [API](https://brasilapi.com.br/docs).
+Nesta versão `1.0.0` esse cliente possui suporte a autocomplete por meio de Typed Hints. Todos as respostas são traduzidas para objetos do Pydantic, que trazem previsibilidade ao explorar a API  através da sua IDE favorita.
 
-### um código simples de exemplo
+![](./images/autocomplete.png)
+
+## Instalação
+Rode o comando `pip install brasilapy` e estará tudo pronto.
+A versão do python que é compativel com essa biblioteca é a `3.10+`.
+
+## Documentação
+Documentação oficial da API com todas as chamadas poderão se encontradas [neste link](https://brasilapi.com.br/docs).
+
+### Código de exemplo
+Para efetuar as consultas na API, basta instanciar a classe e fazer as consultas.
+
 ```py
-from brasilapy import BrasilApiClient
+from brasilapy import BrasilAPI
 
-#acesse os endpoints pela variável client. 
-client = BrasilApiClient()
-response = client.get_estado('GO', {})
+client = BrasilAPI()
+estado = client.get_ibge_estado(state_uf="pb")
 
-print(response.content) #imprime o response da API.
+print(estado.id)
+print(estado.regiao)
+print(estado.sigla)
+
+###
+# para um caso mais complexo, temos
+###
+from brasilapy.constants import IBGEProvider
+
+municipios = client.get_ibge_municipios(state_uf="pb", providers=(IBGEProvider.DADOS_ABERTOS_BR,))
+
+for municipio in municipios:
+    print(municipio.nome)
+    print(municipio.codigo_ibge)
 ```
 
-### atributos do `BrasilApiClient`
+### Métodos disponíveis do `BrasilAPI`
 
-| metodos do cliente    |  endpoint da API |
-|:------------:|:------------------:| 
-|   get_banks | /banks/v1/ |
-| get_bank | /banks/v1/{code}
-| get_cep_v1| /cep/v1/{cep}
-|get_cep_v2| /cep/v2/{cep}
-|get_cnpj  | /cnpj/v1/{cnpj}
-|get_ddd   | /ddd/v1/{ddd}
-|get_feriados_nacionais| /feriados/v1/{ano}
-|get_fipe_veiculo | /fipe/marcas/v1/{tipoVeiculo}
-|get_fipe_precos | /fipe/preco/v1/{codigoFipe}
-|get_fipe_tabelas| /banks/v1/
-|get_ibge_municipios| /ibge/municipios/v1/{siglaUF}?providers=dados-abertos-br,gov,wikipedia
-|get_ibge_estados| /ibge/uf/v1
-|get_ibge_estado| /ibge/uf/v1/{code}
-| get_registro_br| /regsitrobr/v1/{domain}
-| get_taxas | /taxas/v1
-| get_taxa | /taxas/v1/{sigla}
+| Método                                                                    | Detalhes |
+|---------------------------------------------------------------------------|----------|
+ | get_banks()                                                               |          |
+ | get_bank(code: str)                                                       |          |
+ | get_cep(cep: str, api_version: APIVersion)                                |          |
+ | get_cnpj(cnpj: str)                                                       |          |
+ | get_ddd(ddd: str)                                                         |          |
+ | get_feriados(year: int)                                                   |          |
+ | get_fipe_veiculos(tipo_veiculos: FipeTipoVeiculo, tabela_referencia: int) |          |
+ | get_fipe_precos(codigo_fipe: str, tabela_referencia: int)                 |          |
+ | get_fipe_tabelas()                                                        |          |
+ | get_ibge_municipios(state_uf: str, providers: tuple\[IBGEProvider\]       |          |
+ | get_ibge_estados()                                                        |          |
+ | get_registro_br_domain(fqdn: str)                                         |          |
+ | get_taxas_juros()                                                         |          |
+ | get_taxa_juros(taxa: TaxaJurosType)                                       |          |
 
-### O response possue 3 atributos:
+Os tipos de dados `APIVersion`, `FipeTipoVeiculo`, `IBGEProvider` e `TaxaJurosType` são classes de constants que podem ser importadas através do seguinte comando:
 
-| atributo | descrição |
-|:--------:|:---------:|
-|header| header http |
-|status| http status code|
-|content| API json body |
+```py
+from brasilapy.constants import APIVersion, FipeTipoVeiculo, IBGEProvider, TaxaJurosType
+```
 
-## autor
-<img width='100' height='100' style="border-radius:50%; padding:15px" src="https://avatars.githubusercontent.com/u/78698099?v=4" /></br>
-<a href="https://github.com/lipe14-ops" style='padding: 15px' title="Rocketseat">Filipe Soares :computer:</a>
-<p style='padding: 15px'>made with :heart: by <strong>Filipe</strong> :wave: reach me!!!</p>
+## Autores
 
-
-[![](https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white)](fn697169@gmail.com)
-[![](https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&logo=instagram&logoColor=white)](https://www.instagram.com/filipe_kkkj/)
+<table>
+<tbody>
+<tr>
+    <td style="text-align: center">
+        <img width='100' height='100' style="border-radius:50%; padding:15px; display: block; margin: 0 auto" src="https://avatars.githubusercontent.com/u/78698099?v=4" />
+        <a href="https://github.com/lipe14-ops" target="_blank">Filipe Soares</a>
+    </td>
+    <td style="text-align: center">
+        <img width='100' height='100' style="border-radius:50%; padding:15px; display: block; margin: 0 auto" src="https://avatars.githubusercontent.com/u/2691511?v=4" />
+        <a href="https://joepreludian.github.io" target="_blank">Jonhnatha Trigueiro</a>
+    </td>
+</tr>
+</tbody>
+</table>
