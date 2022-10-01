@@ -1,0 +1,16 @@
+name: Project Validation and Lint
+run-name: ${{ github.actor }} is running pre-commit, validating the project.
+on: [push]
+jobs:
+  RunPrecommit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v2
+      - run: pip install pre-commit
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Validate pre-commit configuration file
+        run: pre-commit validate-config
+      - name: Run Pre-commit
+        run: pre-commit run --all-files
+      - run: All done!
