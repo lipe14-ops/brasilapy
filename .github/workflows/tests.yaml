@@ -7,7 +7,7 @@ on:
     types:
       - completed
 jobs:
-  RunPrecommit:
+  RunTests:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/setup-python@v2
@@ -19,3 +19,7 @@ jobs:
       - name: Execute tests with coverage
         run: poetry run pytest --cov .
       - run: echo "All done! 🏁"
+      - name: Report Coverage
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        uses: codecov/codecov-action@v3
