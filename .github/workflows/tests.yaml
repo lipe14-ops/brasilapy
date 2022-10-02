@@ -1,6 +1,7 @@
 name: Tests
 run-name: ${{ github.actor }} started the tests
 on:
+  push:
   workflow_run:
     workflows:
       - Project Validation
