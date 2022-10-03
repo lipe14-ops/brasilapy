@@ -20,7 +20,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Install project dependencies
-        run: poetry install
+        run: poetry install --group dev
       - name: Execute tests with coverage
         run: poetry run pytest --cov --cov-report=xml --cov-report=term .
       - name: Report Coverage
@@ -28,4 +28,4 @@ jobs:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         uses: codecov/codecov-action@v3
       - name: Run mypy validation
-        run: poetry run mypy --junit-xml .
+        run: poetry run mypy .
