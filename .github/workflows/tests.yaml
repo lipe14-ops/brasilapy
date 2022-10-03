@@ -20,7 +20,7 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v3
       - name: Install project dependencies
-        run: poetry install dev
+        run: poetry install --with=dev
       - name: Execute tests with coverage
         run: poetry run pytest --cov --cov-report=xml --cov-report=term .
       - name: Report Coverage
