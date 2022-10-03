@@ -21,8 +21,10 @@ jobs:
       - name: Install project dependencies
         run: poetry install
       - name: Execute tests with coverage
-        run: poetry run pytest --cov --mypy --cov-report=xml --cov-report=term .
+        run: poetry run pytest --cov --cov-report=xml --cov-report=term .
       - name: Report Coverage
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         uses: codecov/codecov-action@v3
+      - name: Run mypy validation
+        run: poetry run mypy --junit-xml .
