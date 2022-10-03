@@ -1,6 +1,7 @@
 name: Tests
 run-name: ${{ github.actor }} started the tests
 on:
+  push:
   pull_request:
     types:
       - opened
