@@ -68,7 +68,7 @@ jobs:
             -Dsonar.sources=.
             -Dsonar.test.exclusions=tests/**
             -Dsonar.tests=tests/
-            -Dsonar.verbose=true
+#            -Dsonar.verbose=true
 
   Deployment:
     needs: [Precommit, Tests]
