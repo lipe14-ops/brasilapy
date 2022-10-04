@@ -23,5 +23,5 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         uses: codecov/codecov-action@v3
-      - name: Run mypy validation
-        run: poetry run mypy .
+#      - name: Run mypy validation
+#        run: poetry run mypy .
