@@ -10,7 +10,7 @@ from brasilapy.processor import ClientProcessor, RequestsProcessor
 def client_processor_usable_class():
     class ClientProcessorUsable(ClientProcessor):
         handler = None
-        base_url = "http://testapi.local"
+        base_url = "https://testapi.local"
 
         def get_data(self, *args, **kwargs) -> dict:
             return super().get_data(*args, **kwargs)
