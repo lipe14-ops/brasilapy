@@ -37,14 +37,16 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         uses: codecov/codecov-action@v3
-      - uses: actions/upload-artifact@master
+      - name: Upload artifacts
+        uses: actions/upload-artifact@master
         with:
           name: project
           path: ./
+          retention-days: 1
 #      - name: Run mypy validation
 #        run: poetry run mypy .
   SonarCloud:
-    needs: [Tests]
+    needs: [Precommit, Tests]
     name: SonarCloud Analisys
     runs-on: ubuntu-latest
     steps:
