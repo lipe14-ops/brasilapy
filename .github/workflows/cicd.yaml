@@ -57,10 +57,10 @@ jobs:
         with:
           python-version: "3.10"
       - name: SonarCloud Scan
-        uses: SonarSource/sonarcloud-github-action@master
         env:
           GITHUB_TOKEN: ${{ secrets.GH_SONAR }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_GH }}
+        uses: SonarSource/sonarcloud-github-action@master
   Deployment:
     needs: [Precommit, Tests]
     runs-on: ubuntu-latest
