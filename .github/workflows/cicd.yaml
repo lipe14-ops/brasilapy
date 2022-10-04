@@ -1,4 +1,4 @@
-name: CI/CD
+name: CI_CD
 run-name: ${{ github.actor }} kicked off a CI/CD
 on:
   push:
