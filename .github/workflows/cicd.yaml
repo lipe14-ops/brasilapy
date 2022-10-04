@@ -3,6 +3,7 @@ run-name: ${{ github.actor }} started the tests
 on:
   push:
   pull_request:
+  repository_dispatch:
 jobs:
   Precommit:
     runs-on: ubuntu-latest
