@@ -1,0 +1,25 @@
+name: Deploy
+run-name: ${{ github.actor }} started the deployment to PyPI
+on:
+  workflow_run:
+    workflows:
+      - Tests
+      - Project Validation
+    types:
+      - completed
+    branches:
+      - master
+jobs:
+  Deployment:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+      - run: pip install poetry
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Project deployment
+        env:
+          PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: poetry publish --build --username "__token__" --password "${{ env.PYPI_PASSWORD }}"

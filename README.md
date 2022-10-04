@@ -47,9 +47,9 @@ for municipio in municipios:
 |---------------------------------------------------------------------------|----------|
  | get_banks()                                                               |          |
  | get_bank(code: str)                                                       |          |
- | get_cep(cep: str, api_version: APIVersion)                                |          |
- | get_cnpj(cnpj: str)                                                       |          |
- | get_ddd(ddd: str)                                                         |          |
+ | get_cep(test_cep: str, api_version: APIVersion)                                |          |
+ | get_cnpj(test_cnpj: str)                                                       |          |
+ | get_ddd(test_ddd: str)                                                         |          |
  | get_feriados(year: int)                                                   |          |
  | get_fipe_veiculos(tipo_veiculos: FipeTipoVeiculo, tabela_referencia: int) |          |
  | get_fipe_precos(codigo_fipe: str, tabela_referencia: int)                 |          |
