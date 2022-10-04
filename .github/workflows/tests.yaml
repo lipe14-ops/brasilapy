@@ -1,11 +1,7 @@
 name: Tests
 run-name: ${{ github.actor }} started the tests
 on:
-  push:
   pull_request:
-    types:
-      - opened
-      - reopened
   workflow_run:
     workflows:
       - Project Validation
@@ -15,7 +11,7 @@ jobs:
   RunTests:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
       - run: pip install poetry
       - name: Check out repository code
         uses: actions/checkout@v3

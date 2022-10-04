@@ -5,7 +5,7 @@ jobs:
   RunPrecommit:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/setup-python@v2
+      - uses: actions/setup-python@v4
       - run: pip install pre-commit
       - name: Check out repository code
         uses: actions/checkout@v3
