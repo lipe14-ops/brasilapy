@@ -62,12 +62,11 @@ jobs:
           args: >
             -Dsonar.organization=joepreludian
             -Dsonar.projectKey=joepreludian_brasilapy
-            -Dsonar.python.coverage.reportPaths=coverage.xml
-            -Dsonar.sources=brasilapy/
+            -Dsonar.python.coverage.reportPaths=./coverage.xml
+            -Dsonar.sources=.
             -Dsonar.test.exclusions=tests/**
             -Dsonar.tests=tests/
             -Dsonar.verbose=true
-            -X
 
   Deployment:
     needs: [Precommit, Tests]
