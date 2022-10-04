@@ -78,7 +78,7 @@ from brasilapy.constants import APIVersion, FipeTipoVeiculo, IBGEProvider, TaxaJ
     </td>
     <td style="text-align: center">
         <img width='100' height='100' style="border-radius:50%; padding:15px; display: block; margin: 0 auto" src="https://avatars.githubusercontent.com/u/2691511?v=4" />
-        <a href="https://joepreludian.github.io" target="_blank">Jonhnatha Trigueiro</a>
+        <a href="https://joepreludian.github.io" target="_blank">Jonhnatha Trigueiro </a>
     </td>
 </tr>
 </tbody>
