@@ -3,6 +3,8 @@
 # BrasilApy
 Um cliente da [Brasil  API](https://brasilapi.com.br/) em python3. Link do [repositório](https://github.com/BrasilAPI/BrasilAPI) oficial.
 
+[![codecov](https://codecov.io/gh/joepreludian/brasilapy/branch/master/graph/badge.svg?token=BKYR6XTW4N)](https://codecov.io/gh/joepreludian/brasilapy)
+
 Nesta versão `1.0.0` esse cliente possui suporte a autocomplete por meio de Typed Hints. Todos as respostas são traduzidas para objetos do Pydantic, que trazem previsibilidade ao explorar a API  através da sua IDE favorita.
 
 ![](./images/autocomplete.png)
