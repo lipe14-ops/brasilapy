@@ -52,15 +52,22 @@ jobs:
         with:
           name: coverage-results
           path: coverage.xml
-      - name: Setup Python
-        uses: actions/setup-python@v2
-        with:
-          python-version: "3.10"
       - name: SonarCloud Scan
         env:
           GITHUB_TOKEN: ${{ secrets.GH_SONAR }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_GH }}
         uses: SonarSource/sonarcloud-github-action@master
+        with:
+          args: >
+            -Dsonar.organization=joepreludian
+            -Dsonar.projectKey=joepreludian_brasilapy
+            -Dsonar.python.coverage.reportPaths=coverage.xml
+            -Dsonar.sources=brasilapy/
+            -Dsonar.test.exclusions=tests/**
+            -Dsonar.tests=tests/
+            -Dsonar.verbose=true
+            -X
+
   Deployment:
     needs: [Precommit, Tests]
     runs-on: ubuntu-latest
