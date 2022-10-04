@@ -2,6 +2,8 @@ name: CI_CD
 run-name: ${{ github.actor }} kicked off a CI/CD
 on:
   push:
+    branches:
+      - master
   pull_request:
   repository_dispatch:
 jobs:
