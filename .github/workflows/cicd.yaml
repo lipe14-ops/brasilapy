@@ -1,0 +1,53 @@
+name: Tests
+run-name: ${{ github.actor }} started the tests
+on:
+  push:
+  pull_request:
+jobs:
+  Precommit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+      - run: pip install pre-commit
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Validate pre-commit configuration file
+        run: pre-commit validate-config
+      - name: Run Pre-commit
+        run: pre-commit run --all-files
+  Tests:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+      - run: pip install poetry
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Install project dependencies
+        run: poetry install --with=dev
+      - name: Execute tests with coverage
+        run: poetry run pytest --cov --cov-report=xml --cov-report=term .
+      - name: Report Coverage
+        env:
+          CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+        uses: codecov/codecov-action@v3
+#      - name: Run mypy validation
+#        run: poetry run mypy .
+  Deployment:
+    needs: [Precommit, Tests]
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/master'
+    steps:
+      - uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+      - run: pip install poetry
+      - name: Check out repository code
+        uses: actions/checkout@v3
+      - name: Project deployment
+        env:
+          PYPI_PASSWORD: ${{ secrets.PYPI_PASSWORD }}
+        run: poetry publish --build --username "__token__" --password "${{ env.PYPI_PASSWORD }}"
