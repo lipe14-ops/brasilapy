@@ -1,5 +1,5 @@
-name: Tests
-run-name: ${{ github.actor }} started the tests
+name: CI/CD
+run-name: ${{ github.actor }} kicked off a CI/CD
 on:
   push:
   pull_request:
@@ -38,7 +38,7 @@ jobs:
       - uses: actions/upload-artifact@master
         with:
           name: coverage-results
-          path: coverage.xml
+          path: ./coverage.xml
 #      - name: Run mypy validation
 #        run: poetry run mypy .
   SonarCloud:
@@ -52,7 +52,7 @@ jobs:
       - uses: actions/download-artifact@master
         with:
           name: coverage-results
-          path: coverage.xml
+          path: ./
       - name: SonarCloud Scan
         env:
           GITHUB_TOKEN: ${{ secrets.GH_SONAR }}  # Needed to get PR information, if any
