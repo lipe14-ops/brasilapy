@@ -53,7 +53,7 @@ jobs:
           name: project
           path: project/
       - name: List Project
-        run: ls -lah
+        run: ls -lah project/
       - name: SonarCloud Scan
         env:
           GITHUB_TOKEN: ${{ secrets.GH_SONAR }}  # Needed to get PR information, if any
@@ -71,7 +71,7 @@ jobs:
 #            -Dsonar.verbose=true
 
   Deployment:
-    needs: [Precommit, Tests]
+    needs: [Precommit, Tests, SonarCloud]
     runs-on: ubuntu-latest
     if: github.ref == 'refs/heads/master'
     steps:
