@@ -34,8 +34,33 @@ jobs:
         env:
           CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
         uses: codecov/codecov-action@v3
+      - uses: actions/upload-artifact@master
+        with:
+          name: coverage-results
+          path: coverage.xml
 #      - name: Run mypy validation
 #        run: poetry run mypy .
+  SonarCloud:
+    needs: [Tests]
+    name: SonarCloud Analisys
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+      - uses: actions/download-artifact@master
+        with:
+          name: coverage-results
+          path: coverage.xml
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: "3.10"
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GH_SONAR }}  # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONARCLOUD_GH }}
   Deployment:
     needs: [Precommit, Tests]
     runs-on: ubuntu-latest
