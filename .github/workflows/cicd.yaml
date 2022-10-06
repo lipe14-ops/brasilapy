@@ -58,14 +58,14 @@ jobs:
         run: ls -lah project/
       - name: SonarCloud Scan
         env:
-          GITHUB_TOKEN: ${{ secrets.GH_SONAR }}  # Needed to get PR information, if any
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
           SONAR_TOKEN: ${{ secrets.SONARCLOUD_GH }}
         uses: SonarSource/sonarcloud-github-action@master
         with:
           projectBaseDir: project
           args: >
-            -Dsonar.organization=joepreludian
-            -Dsonar.projectKey=joepreludian_brasilapy
+            -Dsonar.organization=lipe14-ops
+            -Dsonar.projectKey=lipe14-ops_brasilapy
             -Dsonar.python.coverage.reportPaths=*coverage*.xml
             -Dsonar.sources=brasilapy/
             -Dsonar.test.exclusions=tests/**
