@@ -4,7 +4,7 @@
 Um cliente da [Brasil  API](https://brasilapi.com.br/) em python3. Link do [repositório](https://github.com/BrasilAPI/BrasilAPI) oficial.
 
 [![codecov](https://codecov.io/gh/joepreludian/brasilapy/branch/master/graph/badge.svg?token=BKYR6XTW4N)](https://codecov.io/gh/joepreludian/brasilapy)
-[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=joepreludian_brasilapy&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=joepreludian_brasilapy)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=lipe14-ops_brasilapy&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=joepreludian_brasilapy)
 
 Nesta versão `1.0.0` esse cliente possui suporte a autocomplete por meio de Typed Hints. Todos as respostas são traduzidas para objetos do Pydantic, que trazem previsibilidade ao explorar a API  através da sua IDE favorita.
 
