@@ -83,3 +83,7 @@ from brasilapy.constants import APIVersion, FipeTipoVeiculo, IBGEProvider, TaxaJ
 </tr>
 </tbody>
 </table>
+
+## Gostaria de contribuir?
+
+Escrevemos um guia que pode ser encontrado em [CONTRIBUTE.md](CONTRIBUTE.md).
