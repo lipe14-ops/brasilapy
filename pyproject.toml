@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "brasilapy"
-version = "1.2.0"
+version = "1.2.1"
 description = "Brasil API Client for Python"
 authors = ["Filipe Soares <fn697169@gmail.com>", "Jonhnatha Trigueiro <joepreludian@gmail.com>"]
 license = "MIT"
