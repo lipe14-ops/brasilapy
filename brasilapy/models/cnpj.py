@@ -47,13 +47,13 @@ class CNPJ(BaseReturnModel):
     capital_social: int
     ddd_telefone_1: str
     ddd_telefone_2: str
-    opcao_pelo_mei: bool
+    opcao_pelo_mei: bool | None
     descricao_porte: str
     codigo_municipio: int
     cnaes_secundarios: list[CNAE]
     natureza_juridica: str
     situacao_especial: str
-    opcao_pelo_simples: bool
+    opcao_pelo_simples: bool | None
     situacao_cadastral: int
     data_opcao_pelo_mei: date | None
     data_exclusao_do_mei: date | None
