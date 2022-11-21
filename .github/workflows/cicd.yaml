@@ -45,31 +45,31 @@ jobs:
           retention-days: 1
 #      - name: Run mypy validation
 #        run: poetry run mypy .
-  SonarCloud:
-    needs: [Precommit, Tests]
-    name: SonarCloud Analisys
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/download-artifact@master
-        with:
-          name: project
-          path: project/
-      - name: List Project
-        run: ls -lah project/
-      - name: SonarCloud Scan
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
-          SONAR_TOKEN: ${{ secrets.SONARCLOUD_GH }}
-        uses: SonarSource/sonarcloud-github-action@master
-        with:
-          projectBaseDir: project
-          args: >
-            -Dsonar.organization=lipe14-ops
-            -Dsonar.projectKey=lipe14-ops_brasilapy
-            -Dsonar.python.coverage.reportPaths=*coverage*.xml
-            -Dsonar.sources=brasilapy/
-            -Dsonar.test.exclusions=tests/**
-            -Dsonar.tests=tests/
+#  SonarCloud:
+#    needs: [Precommit, Tests]
+#    name: SonarCloud Analisys
+#    runs-on: ubuntu-latest
+#    steps:
+#      - uses: actions/download-artifact@master
+#        with:
+#          name: project
+#          path: project/
+#      - name: List Project
+#        run: ls -lah project/
+#      - name: SonarCloud Scan
+#        env:
+#          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+#          SONAR_TOKEN: ${{ secrets.SONARCLOUD_GH }}
+#        uses: SonarSource/sonarcloud-github-action@master
+#        with:
+#          projectBaseDir: project
+#          args: >
+#            -Dsonar.organization=lipe14-ops
+#            -Dsonar.projectKey=lipe14-ops_brasilapy
+#            -Dsonar.python.coverage.reportPaths=*coverage*.xml
+#            -Dsonar.sources=brasilapy/
+#            -Dsonar.test.exclusions=tests/**
+#            -Dsonar.tests=tests/
 #            -Dsonar.verbose=true
 
   Deployment:
