@@ -21,8 +21,8 @@ class CEP(BaseReturnModel):
     cep: str
     state: str
     city: str
-    neighborhood: str
-    street: str
+    neighborhood: str | None
+    street: str | None
     service: str
 
 
