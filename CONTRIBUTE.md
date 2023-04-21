@@ -14,9 +14,9 @@ Para trabalhar com o projeto voce precisa do seguinte conjunto ferramental:
 ### Primeiro setup
 1. Uma vez que voce clonou o projeto instale as dependencias para começar o trabalho;
 
-
+   ```bash
     $ poetry install --with dev
-
+   ```
     Creating virtualenv brasilapy-L06DoqL8-py3.10 in /Users/jon/Library/Caches/pypoetry/virtualenvs
     Installing dependencies from lock file
 
@@ -61,11 +61,15 @@ Para trabalhar com o projeto voce precisa do seguinte conjunto ferramental:
 
 2. Instale o wrapper do `pre-commit`. Ele te ajudará a verificar seu código antes de cada commit. Caso tenha curiosidade sobre o projeto, voce pode achar no site oficial em [https://pre-commit.com/](https://pre-commit.com/).
 
-
+    ```bash
     $ poetry shell  # Isso entra dentro do virtualenv, onde o pre-commit está.
+    ```
     Spawning shell within /Users/jon/Library/Caches/pypoetry/virtualenvs/brasilapy-L06DoqL8-py3.10
 
-    (brasilapy-py3.10) $ pre-commit install
+    (brasilapy-py3.10) 
+    ```bash
+    $ pre-commit install
+    ```
     pre-commit installed at .git/hooks/pre-commit
 
 
@@ -75,7 +79,7 @@ Para trabalhar com o projeto voce precisa do seguinte conjunto ferramental:
 
 Para testar o projeto, é bem simples. Uma vez que voce estiver com o virtual environment do projeto ativado, rode o seguinte comando
 
-
+    
     $ poetry shell  # Isso ativa o shell do python para o virtual environment
     (brasilapy-py3.10) $ pytest --cov
     ====================================== test session starts ======================================
