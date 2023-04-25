@@ -13,6 +13,7 @@ from brasilapy.models.general import (
     IbgeMunicipio,
     RegistroBrDominio,
     TaxaJuros,
+    Corretoras
 )
 from brasilapy.processor import RequestsProcessor
 
@@ -153,3 +154,11 @@ class BrasilAPI:
     def get_taxa_juros(self, taxa: TaxaJurosType) -> TaxaJuros:
         taxa = self.processor.get_data(f"/taxas/v1/{taxa}")
         return TaxaJuros.parse_obj(taxa)
+
+    def get_corretoras(self) -> list[Corretoras]:
+        corretoras = self.processor.get_data("/cvm/corretoras/v1/")
+        return [Corretoras.parse_obj(corretora) for corretora in corretoras]
+
+    def get_corretora(self, cnpj: str) -> Corretoras:
+        corretora = self.processor.get_data(f"/cvm/corretoras/v1/{cnpj}")
+        return Corretoras.parse_obj(corretora)

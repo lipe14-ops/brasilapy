@@ -66,9 +66,8 @@ Para trabalhar com o projeto voce precisa do seguinte conjunto ferramental:
     ```
     Spawning shell within /Users/jon/Library/Caches/pypoetry/virtualenvs/brasilapy-L06DoqL8-py3.10
 
-    (brasilapy-py3.10) 
     ```bash
-    $ pre-commit install
+    (brasilapy-py3.10) $ pre-commit install
     ```
     pre-commit installed at .git/hooks/pre-commit
 

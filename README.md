@@ -44,22 +44,24 @@ for municipio in municipios:
 
 ### Métodos disponíveis do `BrasilAPI`
 
-| Método                                                                    | Detalhes |
-|---------------------------------------------------------------------------|----------|
- | get_banks()                                                               |          |
- | get_bank(code: str)                                                       |          |
- | get_cep(test_cep: str, api_version: APIVersion)                                |          |
- | get_cnpj(test_cnpj: str)                                                       |          |
- | get_ddd(test_ddd: str)                                                         |          |
- | get_feriados(year: int)                                                   |          |
+| Método                                                                   | Detalhes |
+|--------------------------------------------------------------------------|----------|
+ | get_banks()                                                              |          |
+ | get_bank(code: str)                                                      |          |
+ | get_cep(test_cep: str, api_version: APIVersion)                          |          |
+ | get_cnpj(test_cnpj: str)                                                 |          |
+ | get_corretoras()                                                         |          |
+| get_corretora(test_cnpj: str)                                            |          |
+ | get_ddd(test_ddd: str)                                                   |          |
+ | get_feriados(year: int)                                                  |          |
  | get_fipe_veiculos(tipo_veiculos: FipeTipoVeiculo, tabela_referencia: int) |          |
- | get_fipe_precos(codigo_fipe: str, tabela_referencia: int)                 |          |
- | get_fipe_tabelas()                                                        |          |
- | get_ibge_municipios(state_uf: str, providers: tuple\[IBGEProvider\]       |          |
- | get_ibge_estados()                                                        |          |
- | get_registro_br_domain(fqdn: str)                                         |          |
- | get_taxas_juros()                                                         |          |
- | get_taxa_juros(taxa: TaxaJurosType)                                       |          |
+ | get_fipe_precos(codigo_fipe: str, tabela_referencia: int)                |          |
+ | get_fipe_tabelas()                                                       |          |
+ | get_ibge_municipios(state_uf: str, providers: tuple\[IBGEProvider\]      |          |
+ | get_ibge_estados()                                                       |          |
+ | get_registro_br_domain(fqdn: str)                                        |          |
+ | get_taxas_juros()                                                        |          |
+ | get_taxa_juros(taxa: TaxaJurosType)                                      |          |
 
 Os tipos de dados `APIVersion`, `FipeTipoVeiculo`, `IBGEProvider` e `TaxaJurosType` são classes de constants que podem ser importadas através do seguinte comando:
 
