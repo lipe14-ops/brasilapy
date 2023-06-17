@@ -107,3 +107,13 @@ class RegistroBrDominio(BaseReturnModel):
 class TaxaJuros(BaseReturnModel):
     nome: str
     valor: float
+
+
+class NCM(BaseReturnModel):
+    codigo: str
+    descricao: str
+    data_inicio: date
+    data_fim: date | None
+    tipo_ato: str
+    numero_ato: str
+    ano_ato: str
