@@ -149,8 +149,10 @@ class BrasilAPI:
         return [TaxaJuros.parse_obj(taxa) for taxa in taxas]
 
     def get_taxa_juros(self, taxa: TaxaJurosType) -> TaxaJuros:
-        taxa = self.processor.get_data(f"/taxas/v1/{taxa}")
-        return TaxaJuros.parse_obj(taxa)
+        if len(taxa) == 0:
+            raise ValueError("The 'taxa' must be a valid TaxaJurosType.")
+        taxa_json = self.processor.get_data(f"/taxas/v1/{taxa}")
+        return TaxaJuros.parse_obj(taxa_json)
 
     def get_ncms(self) -> list[NCM]:
         ncms = self.processor.get_data("/ncm/v1/")
