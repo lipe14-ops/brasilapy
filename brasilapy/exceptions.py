@@ -3,7 +3,7 @@ class ProcessorException(Exception):
         self,
         status_code: int,
         response_text: str,
-        message: str = "A problem occured when processing your request",
+        message: str = "A problem occurred when processing your request.",
     ):
         self.status_code = status_code
         self.response_text = response_text

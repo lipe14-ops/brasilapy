@@ -1,6 +1,8 @@
-![](./images/brasilapi-logo-small.png) <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="70" height="70" />
+
+![logo](./images/brasilapi-logo-small.png) <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/python/python-original.svg" width="70" height="70" />
 
 # BrasilApy
+
 Um cliente da [Brasil  API](https://brasilapi.com.br/) em python3. Link do [repositório](https://github.com/BrasilAPI/BrasilAPI) oficial.
 
 [![codecov](https://codecov.io/gh/joepreludian/brasilapy/branch/master/graph/badge.svg?token=BKYR6XTW4N)](https://codecov.io/gh/joepreludian/brasilapy)
@@ -8,16 +10,19 @@ Um cliente da [Brasil  API](https://brasilapi.com.br/) em python3. Link do [repo
 
 Nesta versão `1.0.0` esse cliente possui suporte a autocomplete por meio de Typed Hints. Todos as respostas são traduzidas para objetos do Pydantic, que trazem previsibilidade ao explorar a API  através da sua IDE favorita.
 
-![](./images/autocomplete.png)
+![autocomplete](./images/autocomplete.png)
 
 ## Instalação
+
 Rode o comando `pip install brasilapy` e estará tudo pronto.
-A versão do python que é compativel com essa biblioteca é a `3.10+`.
+A versão do python que é compatível com essa biblioteca é a `3.10+`.
 
 ## Documentação
+
 Documentação oficial da API com todas as chamadas poderão se encontradas [neste link](https://brasilapi.com.br/docs).
 
 ### Código de exemplo
+
 Para efetuar as consultas na API, basta instanciar a classe e fazer as consultas.
 
 ```py
@@ -46,20 +51,20 @@ for municipio in municipios:
 
 | Método                                                                    | Detalhes |
 |---------------------------------------------------------------------------|----------|
- | get_banks()                                                               |          |
- | get_bank(code: str)                                                       |          |
- | get_cep(test_cep: str, api_version: APIVersion)                                |          |
- | get_cnpj(test_cnpj: str)                                                       |          |
- | get_ddd(test_ddd: str)                                                         |          |
- | get_feriados(year: int)                                                   |          |
- | get_fipe_veiculos(tipo_veiculos: FipeTipoVeiculo, tabela_referencia: int) |          |
- | get_fipe_precos(codigo_fipe: str, tabela_referencia: int)                 |          |
- | get_fipe_tabelas()                                                        |          |
- | get_ibge_municipios(state_uf: str, providers: tuple\[IBGEProvider\]       |          |
- | get_ibge_estados()                                                        |          |
- | get_registro_br_domain(fqdn: str)                                         |          |
- | get_taxas_juros()                                                         |          |
- | get_taxa_juros(taxa: TaxaJurosType)                                       |          |
+| get_banks()                                                               |          |
+| get_bank(code: str)                                                       |          |
+| get_cep(test_cep: str, api_version: APIVersion)                           |          |
+| get_cnpj(test_cnpj: str)                                                  |          |
+| get_ddd(test_ddd: str)                                                    |          |
+| get_feriados(year: int)                                                   |          |
+| get_fipe_veiculos(tipo_veiculos: FipeTipoVeiculo, tabela_referencia: int) |          |
+| get_fipe_precos(codigo_fipe: str, tabela_referencia: int)                 |          |
+| get_fipe_tabelas()                                                        |          |
+| get_ibge_municipios(state_uf: str, providers: tuple\[IBGEProvider\])      |          |
+| get_ibge_estados()                                                        |          |
+| get_registro_br_domain(fqdn: str)                                         |          |
+| get_taxas_juros()                                                         |          |
+| get_taxa_juros(taxa: TaxaJurosType)                                       |          |
 
 Os tipos de dados `APIVersion`, `FipeTipoVeiculo`, `IBGEProvider` e `TaxaJurosType` são classes de constants que podem ser importadas através do seguinte comando:
 
