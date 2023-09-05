@@ -3,6 +3,7 @@ from brasilapy.models.cnpj import CNPJ
 from brasilapy.models.general import (
     CEP,
     DDD,
+    NCM,
     Bank,
     CEPv2,
     FeriadoNacional,
@@ -13,16 +14,14 @@ from brasilapy.models.general import (
     IbgeMunicipio,
     RegistroBrDominio,
     TaxaJuros,
-    NCM
 )
 from brasilapy.processor import RequestsProcessor
 
 
 class BrasilAPI:
-
     processor: RequestsProcessor
 
-    def __init__(self, processor_handler: RequestsProcessor = RequestsProcessor):
+    def __init__(self, processor_handler: type[RequestsProcessor] = RequestsProcessor):
         self.processor = processor_handler()
 
     def get_banks(self) -> list[Bank]:
@@ -35,7 +34,6 @@ class BrasilAPI:
         return Bank.parse_obj(bank_response)
 
     def get_cep(self, cep: str, api_version: APIVersion = APIVersion.V1) -> CEP | CEPv2:
-
         if len(cep) != 8:
             raise TypeError("Please provide a valid CEP number")
 
@@ -58,7 +56,7 @@ class BrasilAPI:
         cnpj_details: dict = self.processor.get_data(f"/cnpj/v1/{cnpj}")
         return CNPJ.parse_obj(cnpj_details)
 
-    def get_ddd(self, ddd: str):
+    def get_ddd(self, ddd: str) -> DDD:
         if len(ddd) != 2:
             raise TypeError("Please provide a DDD number (2 digits)")
 
@@ -101,13 +99,12 @@ class BrasilAPI:
     def get_ibge_municipios(
         self,
         state_uf: str,
-        providers: tuple[IBGEProvider] = (
+        providers: tuple[IBGEProvider, ...] = (
             IBGEProvider.DADOS_ABERTOS_BR,
             IBGEProvider.GOV,
             IBGEProvider.WIKIPEDIA,
         ),
     ) -> list[IbgeMunicipio]:
-
         if not providers:
             raise TypeError("A list of providers must be defined")
 
@@ -152,17 +149,22 @@ class BrasilAPI:
         return [TaxaJuros.parse_obj(taxa) for taxa in taxas]
 
     def get_taxa_juros(self, taxa: TaxaJurosType) -> TaxaJuros:
-        taxa = self.processor.get_data(f"/taxas/v1/{taxa}")
-        return TaxaJuros.parse_obj(taxa)
-    
+        if len(taxa) == 0:
+            raise ValueError("The 'taxa' must be a valid TaxaJurosType.")
+        taxa_json = self.processor.get_data(f"/taxas/v1/{taxa}")
+        return TaxaJuros.parse_obj(taxa_json)
+
     def get_ncms(self) -> list[NCM]:
-        ncms = self.processor.get_data(f"/ncm/v1/")
+        ncms = self.processor.get_data("/ncm/v1/")
         return [NCM.parse_obj(ncm) for ncm in ncms]
 
     def get_ncm(self, codigo: str) -> NCM:
+        if len(codigo) == 0:
+            raise ValueError("The NCM code must not be empty.")
+
         ncm = self.processor.get_data(f"/ncm/v1/{codigo}")
         return NCM.parse_obj(ncm)
-    
+
     def get_ncm_descricao(self, descricao: str) -> list[NCM]:
         ncms = self.processor.get_data(f"/ncm/v1?search={descricao}")
         return [NCM.parse_obj(ncm) for ncm in ncms]
