@@ -21,7 +21,7 @@ from brasilapy.processor import RequestsProcessor
 class BrasilAPI:
     processor: RequestsProcessor
 
-    def __init__(self, processor_handler: RequestsProcessor = RequestsProcessor):
+    def __init__(self, processor_handler: type[RequestsProcessor] = RequestsProcessor):
         self.processor = processor_handler()
 
     def get_banks(self) -> list[Bank]:
@@ -56,7 +56,7 @@ class BrasilAPI:
         cnpj_details: dict = self.processor.get_data(f"/cnpj/v1/{cnpj}")
         return CNPJ.parse_obj(cnpj_details)
 
-    def get_ddd(self, ddd: str):
+    def get_ddd(self, ddd: str) -> DDD:
         if len(ddd) != 2:
             raise TypeError("Please provide a DDD number (2 digits)")
 
@@ -99,7 +99,7 @@ class BrasilAPI:
     def get_ibge_municipios(
         self,
         state_uf: str,
-        providers: tuple[IBGEProvider] = (
+        providers: tuple[IBGEProvider, ...] = (
             IBGEProvider.DADOS_ABERTOS_BR,
             IBGEProvider.GOV,
             IBGEProvider.WIKIPEDIA,
