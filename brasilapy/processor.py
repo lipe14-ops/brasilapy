@@ -1,4 +1,5 @@
 from abc import ABC, abstractmethod
+from typing import Any
 
 import requests
 from requests import Session as RequestSession
@@ -7,8 +8,7 @@ from brasilapy.exceptions import ProcessorException
 
 
 class ClientProcessor(ABC):
-
-    handler: any
+    handler: Any
     base_url: str
 
     @abstractmethod
