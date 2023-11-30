@@ -67,6 +67,9 @@ class BrasilAPI:
 
         cnpj_details: dict = self.processor.get_data(f"/cnpj/v1/{cnpj}")
         return CNPJ.parse_obj(cnpj_details)
+    
+    def get_cptec():
+        return
 
     def get_ddd(self, ddd: str):
         if len(ddd) != 2:
