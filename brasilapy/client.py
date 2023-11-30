@@ -1,6 +1,7 @@
 from brasilapy.constants import APIVersion, FipeTipoVeiculo, IBGEProvider, TaxaJurosType
 from brasilapy.models.cnpj import CNPJ
 from brasilapy.models.general import (
+    Corretora,
     CEP,
     DDD,
     Bank,
@@ -50,6 +51,15 @@ class BrasilAPI:
         cep_details: dict = self.processor.get_data(f"/cep/{api_version}/{cep}")
 
         return model_class.parse_obj(cep_details)
+
+    def get_corretoras(self, cnpj: str) ->  Corretora:
+        if len(cnpj) != 14:
+            raise TypeError("Please provide a valid CNPJ number")
+        
+        corretoras_detail: dict = self.processor.get_data(f"/cvm/corretoras/v1/{cnpj}")
+        return Corretora.parse_obj(corretoras_detail)
+
+
 
     def get_cnpj(self, cnpj: str) -> CNPJ:
         if len(cnpj) != 14:
